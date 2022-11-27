@@ -126,7 +126,7 @@ func (h *handlerproduct) CreateProduct(w http.ResponseWriter, r *http.Request) {
 	var API_KEY = os.Getenv("API_KEY")
 	var API_SECRET = os.Getenv("API_SECRET")
 	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
-	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "create-product"})
+	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "createProduct"})
 
 	if err != nil {
 		fmt.Println(err.Error())
@@ -217,7 +217,7 @@ func (h *handlerproduct) UpdateProduct(w http.ResponseWriter, r *http.Request) {
 	var API_SECRET = os.Getenv("API_SECRET")
 
 	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
-	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "create-product"})
+	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "createProduct"})
 
 	if err != nil {
 		fmt.Println(err.Error())
