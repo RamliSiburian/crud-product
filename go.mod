@@ -3,6 +3,7 @@ module nutecth
 go 1.19
 
 require (
+	github.com/cloudinary/cloudinary-go/v2 v2.2.0
 	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/golang-jwt/jwt/v4 v4.4.2
 	github.com/gorilla/handlers v1.5.1
@@ -14,7 +15,6 @@ require (
 )
 
 require (
-	github.com/cloudinary/cloudinary-go/v2 v2.2.0 // indirect
 	github.com/creasty/defaults v1.5.1 // indirect
 	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
@@ -33,6 +33,7 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
+	github.com/stretchr/testify v1.8.0 // indirect
 	golang.org/x/text v0.4.0 // indirect
 	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
 	gorm.io/driver/postgres v1.4.5 // indirect
