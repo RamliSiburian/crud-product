@@ -1,7 +1,9 @@
 package Handlers
 
 import (
+	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	productDto "nutecth/Dto/Product"
 	Dto "nutecth/Dto/Result"
@@ -10,6 +12,8 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/cloudinary/cloudinary-go/v2"
+	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/go-playground/validator"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/gorilla/mux"
@@ -117,19 +121,19 @@ func (h *handlerproduct) CreateProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// var ctx = context.Background()
-	// var CLOUD_NAME = os.Getenv("CLOUD_NAME")
-	// var API_KEY = os.Getenv("API_KEY")
-	// var API_SECRET = os.Getenv("API_SECRET")
-	// cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
-	// resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "halloCorona/articleImage"})
+	var ctx = context.Background()
+	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+	var API_KEY = os.Getenv("API_KEY")
+	var API_SECRET = os.Getenv("API_SECRET")
+	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "halloCorona/articleImage"})
 
-	// if err != nil {
-	// 	fmt.Println(err.Error())
-	// }
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 
 	product := Models.Product{
-		Image:     filepath,
+		Image:     resp.SecureURL,
 		Nama:      request.Nama,
 		HargaBeli: request.HargaBeli,
 		HargaJual: request.HargaJual,
@@ -207,17 +211,17 @@ func (h *handlerproduct) UpdateProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// var ctx = context.Background()
-	// var CLOUD_NAME = os.Getenv("CLOUD_NAME")
-	// var API_KEY = os.Getenv("API_KEY")
-	// var API_SECRET = os.Getenv("API_SECRET")
+	var ctx = context.Background()
+	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+	var API_KEY = os.Getenv("API_KEY")
+	var API_SECRET = os.Getenv("API_SECRET")
 
-	// cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
-	// resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "halloCorona/userImage"})
+	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "halloCorona/userImage"})
 
-	// if err != nil {
-	// 	fmt.Println(err.Error())
-	// }
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 
 	if request.Nama != "" {
 		product.Nama = request.Nama
@@ -232,7 +236,7 @@ func (h *handlerproduct) UpdateProduct(w http.ResponseWriter, r *http.Request) {
 		product.Stok = request.Stok
 	}
 	if filepath != "" {
-		product.Image = filepath
+		product.Image = resp.SecureURL
 	}
 
 	data, err := h.ProductRepository.UpdateProduct(product)
