@@ -6,6 +6,8 @@ function Home() {
             <div className="wellcome">
                 <h1>Selamat Datang !!!!</h1>
                 <h4>Silahkan login untuk menambah data</h4>
+                <h5>username : admin Password : admin</h5>
+                <h5>username : admin1 Password : admin1</h5>
             </div>
         </div>
     )
