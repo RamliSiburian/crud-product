@@ -72,7 +72,7 @@ function EditProduct({ showEdit, setShowEdit, idEdit, dataEdit }) {
 
                 function navigates() {
                     setMessage(null)
-                    setShowProduct(false)
+                    setShowEdit(false)
                     navigate("/Dashboard");
                 }
 
